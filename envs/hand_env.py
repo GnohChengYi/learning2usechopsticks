@@ -3,6 +3,12 @@ import os
 import glm
 import numpy as np
 from gym import utils, spaces
+
+# https://github.com/openai/mujoco-py/issues/638#issuecomment-969019281
+# Since python 3.8, only "trusted dlls" are loaded. 
+# Hence, one has to add the location of the installed mujoco version to the list of allowed DLLs.
+os.add_dll_directory(f"{os.environ['userprofile']}\\.mujoco\\mjpro150\\bin")
+
 from mujoco_py import functions as mjf
 from mujoco_py import MjSim, load_model_from_path
 from scipy.linalg import cho_factor, cho_solve
